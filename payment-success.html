@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank You for Your Purchase</title>
+</head>
+<body>
+  <h1>Thank you for your order!</h1>
+  <p>Your ebook will be sent to your email shortly.</p>
+
+  <script>
+    const customerEmail = "customer@example.com"; // Replace with actual customer email dynamically
+    const product = {
+      name: "Digital Marketing Secrets (eBook)",
+      downloadURL: "https://yourdomain.com/downloads/marketing-ebook.pdf"
+    };
+
+    fetch("/send-download-email.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        email: customerEmail,
+        product: product.name,
+        download_url: product.downloadURL
+      })
+    })
+    .then(res => res.text())
+    .then(alert)
+    .catch(console.error);
+  </script>
+</body>
+</html>
